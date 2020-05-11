@@ -1,0 +1,36 @@
+@mixin square-element($_size) {
+  height: $_size;
+  width: $_size;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+
+  :-moz-placeholder {
+    @content;
+  }
+
+  ::-moz-placeholder {
+    @content;
+  }
+
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+/**
+ * Responsive
+ */
+@mixin mq-from-landscape($_breakpoint) {
+  @include mq($from: $_breakpoint, $and: '(orientation: landscape)') {
+    @content;
+  }
+}
+@mixin mq-until-landscape($_breakpoint) {
+  @include mq($until: $_breakpoint, $and: '(orientation: landscape)') {
+    @content;
+  }
+}
