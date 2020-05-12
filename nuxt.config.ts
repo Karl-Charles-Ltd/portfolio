@@ -45,8 +45,8 @@ const nuxtConfig: Configuration = {
     },
   },
   sentry: {
-    dsn: 'https://6f22d580be1640ada4ebe0b09614a759@o391085.ingest.sentry.io/5236626',
-    disabled: false,
+    dsn: process.env.SENTRY_DSN,
+    disabled: process.env.ENVIRONMENT === 'development',
     config: { logError: true },
   },
   typescript: {
