@@ -55,10 +55,12 @@
     "node-sass": "4.13",
     "nuxt": "2.12.2",
     "nuxt-property-decorator": "^2.7.2",
+    "rolly.js": "^0.4.0",
     "sass-loader": "^8.0.2",
     "sass-mq": "^5.0.1",
     "throttle-debounce": "^2.1.0",
     "ts-node": "^8.9.1",
+    "tslib": "^2.0.0",
     "vee-validate": "^3.3.0",
     "vue-clickaway": "^2.2.2",
     "vuex-module-decorators": "^0.17.0"

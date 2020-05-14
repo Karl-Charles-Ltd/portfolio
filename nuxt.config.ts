@@ -10,7 +10,7 @@ const nuxtConfig: Configuration = {
   loading: { color: '' },
   css: ['assets/scss/app.scss'],
   buildModules: [
-    '@nuxt/typescript-build',
+    ['@nuxt/typescript-build', { typeCheck: process.env.NODE_ENV === 'development' }],
     ['@nuxtjs/stylelint-module', { syntax: 'scss' }],
     ['@nuxtjs/eslint-module', { configFile: './.eslintrc.js' }],
     ['@nuxtjs/dotenv', { filename: '.env' }],
