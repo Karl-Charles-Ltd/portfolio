@@ -23,6 +23,6 @@ export function componentFactory(component, options) {
 
 export function createSnapshot(component, options) {
   const wrapper = componentFactory(component, options);
-  expect(wrapper.isVueInstance()).toBeTruthy();
+  expect(wrapper.exists()).toBeTruthy();
   expect(wrapper.html()).toMatchSnapshot();
 }

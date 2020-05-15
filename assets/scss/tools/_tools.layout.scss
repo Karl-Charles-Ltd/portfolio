@@ -1,0 +1,21 @@
+$global-z-index: (
+  aboveAll             : 100,
+  modal                : 65,
+  drawer               : 64,
+  overlay              : 60,
+  error                : 50,
+  nav                  : 31,
+  componentsForeground : 30,
+  componentsBackground : 10,
+  foreground           : 5,
+  base                 : 1,
+  background           : -1,
+  deepBackground       : -10,
+);
+
+@function z-index($_layer) {
+  @if not map-has-key($global-z-index, $_layer) {
+    @warn 'No layer found for `#{$_layer}` in $global-z-index map - z-index property omitted.';
+  }
+  @return map-get($global-z-index, $_layer);
+}

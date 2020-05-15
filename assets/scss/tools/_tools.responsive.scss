@@ -1,0 +1,12 @@
+@function responsive($_component) {
+  @if not map-has-key($global-responsive-map, $_component) {
+    @error 'No component found for `#{$_component}` in $global-responsive-map.';
+  }
+  @return map-get($global-responsive-map, $_component);
+}
+
+@function mq-get-breakpoint-width($name, $breakpoints: $mq-breakpoints) {
+  $width: map-has-key($breakpoints, $name);
+  @if not $width { @warn("Breakpoint #{$name} wasn't found in $breakpoints.") }
+  @return $width;
+}
