@@ -1,0 +1,30 @@
+/* ==========================================================================
+   # TOOLS FONTS
+   ========================================================================== */
+
+/**
+ * Generate just the src part of a font-face declaration to include a font from file.
+ */
+
+@mixin add_font_src($link) {
+  src: url($link + '.eot');
+  src:
+    url($link + '.eot?#iefix') format('embedded-opentype'),
+    url($link + '.woff2') format('woff2'),
+    url($link + '.woff') format('woff'),
+    url($link + '.ttf')  format('truetype'),
+    url($link + '.svg#svgFontName') format('svg');
+}
+
+/**
+ * Generate font-face styles to include a font from file.
+ */
+@mixin add_font($name, $link, $weight: 'normal', $style: 'normal') {
+  @font-face {
+    font-display: swap;
+    font-family: $name;
+    font-style: #{$style};
+    font-weight: #{$weight};
+    @include add_font_src($link);
+  }
+}

@@ -90,6 +90,8 @@ export default class BaseLayout extends mixins(layoutMixin) {
 </script>
 
 <style scoped lang="scss">
+@import '~sass-mq';
+
 $flex-layout-gutter-pattern-sizes: (
   '--default': (
     'mobile': $spacing-tiny,

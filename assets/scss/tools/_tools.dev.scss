@@ -8,6 +8,7 @@
 }
 
 @function strip-unit($number) {
+  @debug $number;
   @if type-of($number) == 'number' and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }

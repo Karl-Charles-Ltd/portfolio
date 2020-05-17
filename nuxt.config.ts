@@ -3,10 +3,19 @@ import head from './config/head';
 
 require('dotenv').config();
 
+const apiUseHttps = ((process.env.API_HTTPS && process.env.API_HTTPS) || '').toLowerCase() !== 'false';
+let debugLevel = process.env.DEBUG_LEVEL;
+
+if (!debugLevel) debugLevel = process.env.NODE_ENV === 'development' ? 'info' : 'error';
+
 // @ts-ignore
 const nuxtConfig: Configuration = {
   mode: 'universal',
   head,
+  env: {
+    debugLevel,
+    debugAxiosVerbose: process.env.DEBUG_AXIOS_VERBOSE || 'false',
+  },
   loading: { color: '' },
   css: ['assets/scss/app.scss'],
   buildModules: [
@@ -26,9 +35,9 @@ const nuxtConfig: Configuration = {
   styleResources: {
     scss: ['assets/scss/settings-tools.scss'],
   },
-  plugins: [],
+  plugins: ['~/plugins/global-components.js'],
   axios: {
-    https: process.env.API_HTTPS || false,
+    https: apiUseHttps,
   },
   auth: {
     redirect: {
