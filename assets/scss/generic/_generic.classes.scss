@@ -1,0 +1,76 @@
+///* ========================================================================
+//   #CLASSES
+//   ======================================================================== */
+%flex {
+  display: flex;
+
+  &--center {
+    @extend %flex;
+    align-items: center;
+    justify-content: center;
+
+    &--end {
+      @extend %flex--center;
+      justify-content: flex-end;
+    }
+
+    &--start {
+      @extend %flex--center;
+      justify-content: flex-start;
+    }
+  }
+
+  &--start {
+    @extend %flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    &--center {
+      @extend %flex--start;
+      justify-content: center;
+    }
+
+    &--end {
+      @extend %flex--start;
+      justify-content: flex-end;
+    }
+  }
+
+  &--end {
+    @extend %flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    &--center {
+      @extend %flex--end;
+      justify-content: center;
+    }
+
+    &--start {
+      @extend %flex--end;
+      justify-content: flex-start;
+    }
+  }
+}
+
+%absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: z-index(aboveAll);
+}
+
+%fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: z-index(aboveAll);
+}
+
+%transition {
+  @include transition();
+}

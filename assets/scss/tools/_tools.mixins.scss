@@ -42,3 +42,7 @@
     @content;
   }
 }
+
+@mixin transition($selector: all, $duration: 0.3s, $delay: 0s, $timing-function: ease-in-out) {
+  transition: $selector $duration $delay $timing-function;
+}

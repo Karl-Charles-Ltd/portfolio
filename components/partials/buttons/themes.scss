@@ -1,0 +1,199 @@
+$_block-btn-border-width: 0.2em;
+$_outline-btn-border-width: 3px;
+$_action-btn-border-width: 1px;
+
+$_block-button-style-map: (
+  'primary': (
+    'background-color': color('primary'),
+    'border': $_block-btn-border-width solid color('primary'),
+    'color': color('secondary'),
+    'other': (
+      'box-shadow-color': color('primary-dark'),
+    ),
+  ),
+  'secondary': (
+    'background-color': color('secondary'),
+    'border': $_block-btn-border-width solid color('secondary'),
+    'color': color('white'),
+    'other': (
+      'box-shadow-color': color('secondary-dark'),
+    ),
+  ),
+  'secondary-dark': (
+    'background-color': color('secondary-dark'),
+    'border': $_block-btn-border-width solid color('secondary-dark'),
+    'color': color('white'),
+    'other': (
+      'box-shadow-color': color('secondary-dark'),
+    ),
+  ),
+  'tertiary': (
+    'background-color': color('tertiary'),
+    'border': $_block-btn-border-width solid color('tertiary'),
+    'color': color('secondary'),
+    'other': (
+      'box-shadow-color': color('tertiary-dark'),
+    ),
+  ),
+  'quaternary': (
+    'background-color': color('quaternary'),
+    'border': $_block-btn-border-width solid color('quaternary'),
+    'color': color('secondary'),
+    'other': (
+      'box-shadow-color': color('quaternary-dark'),
+    ),
+  ),
+  'quinary': (
+    'background-color': color('quinary'),
+    'border': $_block-btn-border-width solid color('quinary'),
+    'color': color('white'),
+    'other': (
+      'box-shadow-color': color('quinary-dark'),
+    ),
+  ),
+  'white': (
+    'background-color': color('white'),
+    'border': $_block-btn-border-width solid color('white'),
+    'color': color('secondary'),
+    'other': (
+      'box-shadow-color': color('light-grey-one'),
+    ),
+  ),
+  'charcoal': (
+    'background-color': color('charcoal'),
+    'border': $_block-btn-border-width solid color('charcoal'),
+    'color': color('white'),
+    'other': (
+      'box-shadow-color': color('black'),
+    ),
+  ),
+  'light-grey-one': (
+    'background-color': color('light-grey-one'),
+    'border': $_block-btn-border-width solid color('light-grey-one'),
+    'color': color('secondary'),
+    'other': (
+      'box-shadow-color': color('grey-two'),
+    ),
+  ),
+);
+
+$_outline-button-style-map: (
+  'primary': (
+    'border': $_outline-btn-border-width solid color('primary'),
+    'color': color('primary'),
+    'other': (
+      'selected-background-color': color('primary'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+  'secondary': (
+    'border': $_outline-btn-border-width solid color('secondary'),
+    'color': color('secondary'),
+    'other': (
+      'selected-background-color': color('secondary'),
+      'hover-text-color': color('white'),
+    ),
+  ),
+  'tertiary': (
+    'border': $_outline-btn-border-width solid color('tertiary'),
+    'color': color('tertiary'),
+    'other': (
+      'selected-background-color': color('tertiary'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+  'quaternary': (
+    'border': $_outline-btn-border-width solid color('quaternary'),
+    'color': color('quaternary'),
+    'other': (
+      'selected-background-color': color('quaternary'),
+      'hover-text-color': color('white'),
+    )
+  ),
+  'quinary': (
+    'border': $_outline-btn-border-width solid color('quinary'),
+    'color': color('quinary'),
+    'other': (
+      'selected-background-color': color('quinary'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+  'white': (
+    'border': $_outline-btn-border-width solid color('white'),
+    'color': color('white'),
+    'other': (
+      'selected-background-color': color('white'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+  'charcoal': (
+    'border': $_outline-btn-border-width solid color('charcoal'),
+    'color': color('charcoal'),
+    'other': (
+      'selected-background-color': color('charcoal'),
+      'hover-text-color': color('white'),
+    ),
+  ),
+  'light-grey-one': (
+    'border': $_outline-btn-border-width solid color('light-grey-one'),
+    'color': color('light-grey-one'),
+    'other': (
+      'selected-background-color': color('light-grey-one'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+);
+
+$_line-button-style-map: (
+  'primary': (
+    'border-color': color('primary'),
+    'color': color('primary'),
+  ),
+  'secondary': (
+    'border-color': color('secondary'),
+    'color': color('secondary'),
+  ),
+  'tertiary': (
+    'border-color': color('tertiary'),
+    'color': color('tertiary'),
+  ),
+  'quaternary': (
+    'border-color': color('quaternary'),
+    'color': color('quaternary'),
+  ),
+  'quinary': (
+    'border-color': color('quinary'),
+    'color': color('quinary'),
+  ),
+  'white': (
+    'border-color': color('white'),
+    'color': color('white'),
+  ),
+  'charcoal': (
+    'border-color': color('charcoal'),
+    'color': color('charcoal'),
+  ),
+  'light-grey-one': (
+    'border-color': color('light-grey-one'),
+    'color': color('light-grey-one'),
+  ),
+);
+
+$_action-button-style-map: (
+  'secondary': (
+    'border': $_action-btn-border-width solid color('secondary'),
+    'color': color('secondary'),
+    'other': (
+      'hover-background-color': color('secondary'),
+      'hover-text-color': color('white'),
+    ),
+  ),
+  'light-grey-one': (
+    'border': $_action-btn-border-width solid color('light-grey-one'),
+    'color': color('light-grey-one'),
+    'other': (
+      'hover-background-color': color('light-grey-one'),
+      'hover-text-color': color('secondary'),
+    ),
+  ),
+);

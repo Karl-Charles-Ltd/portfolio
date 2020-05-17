@@ -26,7 +26,8 @@
       "@nuxt/vue-app",
       "@nuxtjs/axios",
       "./index.d.ts",
-      "./vue-shim.d.ts"
+      "./vue-shim.d.ts",
+      "./mp4-shim.d.ts"
     ]
   },
   "exclude": [

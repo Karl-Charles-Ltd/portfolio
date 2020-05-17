@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonIcon renders a button with a base icon 1`] = `
+"<div class=\\"v-btn-icon v-btn-icon--small v-btn-icon--secondary\\"><button tabindex=\\"0\\" class=\\"v-btn-icon__btn\\">
+    <baseicon-stub icon=\\"Tick\\" size=\\"small\\" theme=\\"secondary\\" class=\\"v-btn-icon__graphic\\"></baseicon-stub>
+  </button></div>"
+`;

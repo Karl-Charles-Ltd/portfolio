@@ -26,3 +26,7 @@ export function createSnapshot(component, options) {
   expect(wrapper.exists()).toBeTruthy();
   expect(wrapper.html()).toMatchSnapshot();
 }
+
+export function testComputedProperty(component, computedProperty, tempVue) {
+  return component.options.computed[computedProperty].get.call(tempVue);
+}

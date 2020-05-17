@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseButton mounts and renders properly 1`] = `
+"<button type=\\"button\\" class=\\"v-btn v-btn--secondary v-btn--block\\">
+  <!----> <span class=\\"v-btn__content u-text--button\\"></span></button>"
+`;

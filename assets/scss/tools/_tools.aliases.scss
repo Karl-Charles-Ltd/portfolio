@@ -35,3 +35,11 @@ $available-spacing-units: (
 @function z($_value) {
   @return z-index($_value);
 }
+
+@function color($_color) {
+  @return theme-color($_color);
+}
+
+@function font($_font) {
+  @return theme-font($_font);
+}

@@ -1,0 +1,14 @@
+$typeface-nanum-gothic: 'Nanum Gothic', Helvetica, sans-serif;
+$typeface-press-start: 'Press Start 2P', Helvetica, sans-serif;
+
+$theme-fonts: (
+  'primary': $typeface-nanum-gothic,
+  'accent': $typeface-press-start,
+);
+
+@function theme-font($_font) {
+  @if not map-has_key($theme-fonts, $_font) {
+    @warn 'No font found for `#{$_font}` in $theme-fonts - font returned will be null.';
+  }
+  @return map-get($theme-fonts, $_font);
+}

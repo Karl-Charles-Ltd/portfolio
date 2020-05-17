@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseIcon is a Vue instance 1`] = `"<anonymous-stub class=\\"v-icon v-icon--teeny u-color-primary\\"></anonymous-stub>"`;

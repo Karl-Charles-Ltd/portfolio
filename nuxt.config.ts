@@ -25,34 +25,34 @@ const nuxtConfig: Configuration = {
     ['@nuxtjs/dotenv', { filename: '.env' }],
   ],
   modules: [
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/auth',
+    // '@nuxtjs/auth',
     '@nuxtjs/sentry',
     '@nuxtjs/style-resources',
     '@nuxtjs/universal-storage',
   ],
   styleResources: {
-    scss: ['assets/scss/settings-tools.scss'],
+    scss: ['~/assets/scss/settings-tools.scss', '~/assets/scss/generic/generic.scss'],
   },
   plugins: ['~/plugins/global-components.js'],
   axios: {
     https: apiUseHttps,
   },
-  auth: {
-    redirect: {
-      home: false,
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/auth/login', method: 'post', propertyName: 'data.token.accessToken' },
-          user: { url: 'auth/user', method: 'get', propertyName: 'data.user' },
-          logout: { url: 'auth/logout', method: 'post' },
-        },
-      },
-    },
-  },
+  // auth: {
+  //   redirect: {
+  //     home: false,
+  //   },
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: '/auth/login', method: 'post', propertyName: 'data.token.accessToken' },
+  //         user: { url: 'auth/user', method: 'get', propertyName: 'data.user' },
+  //         logout: { url: 'auth/logout', method: 'post' },
+  //       },
+  //     },
+  //   },
+  // },
   sentry: {
     dsn: process.env.SENTRY_DSN,
     disabled: process.env.ENVIRONMENT === 'development',
@@ -80,6 +80,12 @@ const nuxtConfig: Configuration = {
   build: {
     loaders: {
       scss: { sourceMap: false },
+      vue: {
+        transformAssetUrls: {
+          audio: 'src',
+          source: 'src',
+        },
+      },
     },
     transpile: ['vee-validate/dist/rules'],
     babel: {
@@ -95,7 +101,6 @@ const nuxtConfig: Configuration = {
         ];
       },
     },
-    // @ts-ignore
     extend(config, ctx) {
       if (ctx.isDev) {
         // Allow nicer debugging for the SSR parts of the app by inlining the source maps

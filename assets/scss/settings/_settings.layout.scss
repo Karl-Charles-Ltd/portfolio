@@ -27,3 +27,10 @@ $global-z-index: (
   background           : -1,
   deepBackground       : -10,
 );
+
+@function z-index($_layer) {
+  @if not map-has-key($global-z-index, $_layer) {
+    @warn 'No layer found for `#{$_layer}` in $global-z-index map - z-index property omitted.';
+  }
+  @return map-get($global-z-index, $_layer);
+}
