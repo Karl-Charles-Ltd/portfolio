@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseLayout mounts and renders properly 1`] = `"<div class=\\"v-layout v-layout--top v-layout--row v-layout--left v-layout--base\\"></div>"`;

@@ -1,3 +1,37 @@
 /* ==========================================================================
    # COLOURS
    ========================================================================== */
+
+// ========PALETTE========
+$palette-purple: #6b2f93;
+$palette-purple-darker: #370b3c;
+$palette-pink: #D0438F;
+$palette-retro-pink: #f40ee3;
+$palette-retro-blue: #09ECFD;
+
+$monochrome-colors: (
+  'black': #000000,
+  'charcoal': #4D4D4D,
+  'grey-one': #949494,
+  'grey-two': #CDCDCD,
+  'light-grey-one': #E2E2E2,
+  'light-grey-two': #F9F9F9,
+  'white': #FFFFFF
+);
+
+$theme-colors: (
+  'primary': $palette-purple-darker,
+  'secondary': $palette-purple,
+  'tertiary': $palette-pink,
+  'quaternary': $palette-retro-pink,
+  'quinary': $palette-retro-blue,
+);
+
+$map-core-colors: map-merge($monochrome-colors, $theme-colors);
+
+@function theme-color($_color) {
+  @if not map-has-key($map-core-colors, $_color) {
+    @warn 'No color found for `#{$_color}` in $map-core-colors - color returned will be null.';
+  }
+  @return map-get($map-core-colors, $_color);
+}

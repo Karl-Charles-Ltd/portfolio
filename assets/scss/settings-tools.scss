@@ -1,5 +1,28 @@
-/**
- * This can now be used through the applications .vue files
- */
-@import 'settings/settings';
-@import 'tools/tools';
+@import 'tools/tools.dev';
+@import 'tools/tools.core';
+@import 'settings/settings.config';
+@import 'settings/settings.core';
+@import 'settings/settings.global';
+@import 'settings/settings.colors';
+@import 'settings/settings.fonts';
+@import 'settings/settings.layout';
+@import 'settings/settings.text';
+@import 'settings/settings.transitions';
+@import 'settings/settings.responsive';
+//@import 'settings/settings.cache';
+
+@import '~inuitcss/tools/tools.clearfix';
+@import '~inuitcss/tools/tools.hidden';
+@import '~sass-mq/mq';
+//@import '~inuitcss-hex/tools/tools.aliases';
+//@import '~inuitcss-hex/tools/tools.colors';
+//@import '~inuitcss-hex/tools/tools.helpers';
+//@import '~inuitcss-hex/tools/tools.layout';
+//@import '~inuitcss-hex/tools/tools.mixins';
+//@import '~inuitcss-hex/tools/tools.transitions';
+@import 'tools/tools.aliases';
+@import 'tools/tools.text';
+@import 'tools/tools.fonts';
+@import 'tools/tools.font-size';
+@import 'tools/tools.responsive';
+@import 'tools/tools.mixins';

@@ -103,6 +103,11 @@ const head = {
     // },
     // @todo Create and complete all favicons in the config/head.js file.
     // @todo Favicon sizes needed: 72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512
+    {
+      href:
+        'https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Press+Start+2P&family=Righteous&display=swap',
+      rel: 'stylesheet',
+    },
   ],
 
   script: [

@@ -1,0 +1,56 @@
+$icon-size-map: (
+  'mini': $spacing-teeny,
+  'teeny': $spacing-teeny,
+  'tiny': $spacing-tiny,
+  'small': $spacing-small,
+  'base': $spacing-base,
+  'medium': $spacing-medium,
+  'intermediate': $spacing-intermediate,
+  'big': $spacing-big,
+);
+
+$disc-icon-size-map: (
+  'mini': $spacing-mini,
+  'teeny': $spacing-teeny,
+  'tiny': $spacing-tiny,
+  'small': $spacing-small,
+  'base': $spacing-base,
+  'medium': $spacing-medium,
+  'intermediate': $spacing-intermediate,
+  'big': $spacing-big,
+);
+
+$button-icon-style-map: (
+  'primary': (
+    'hover': color('primary-dark'),
+    'focus': color('primary'),
+  ),
+  'secondary': (
+    'hover': color('secondary-dark'),
+    'focus': color('secondary'),
+  ),
+  'tertiary': (
+    'hover': color('tertiary-dark'),
+    'focus': color('tertiary'),
+  ),
+  'quaternary': (
+    'hover': color('quaternary-dark'),
+    'focus': color('quaternary'),
+  ),
+  'quinary': (
+    'hover': color('quinary-darker'),
+    'focus': color('quinary'),
+  ),
+  'white': (
+    'hover': color('light-grey-one'),
+    'focus': color('light-grey-one'),
+  ),
+  'charcoal': (
+    'hover': color('black'),
+    'focus': color('charcoal'),
+  ),
+  'light-grey': (
+    'hover': color('grey-two'),
+    'focus': color('light-grey-one'),
+  ),
+);

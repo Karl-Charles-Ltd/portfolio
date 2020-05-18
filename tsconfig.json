@@ -3,28 +3,22 @@
     "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom"
-    ],
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "importHelpers": true,
     "noImplicitAny": false,
+    "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "~/*": ["./*"],
+      "@/*": ["./*"]
     },
     "types": [
       "@types/node",
@@ -32,7 +26,8 @@
       "@nuxt/vue-app",
       "@nuxtjs/axios",
       "./index.d.ts",
-      "./vue-shim.d.ts"
+      "./vue-shim.d.ts",
+      "./mp4-shim.d.ts"
     ]
   },
   "exclude": [

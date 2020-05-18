@@ -1,7 +1,29 @@
-@mixin square-element($_size) {
+//@mixin backgroundImage($url) {
+//    background-image: url(append-cache-query($url)); // stylelint-disable-line function-url-quotes
+//}
+
+@mixin square-w-h($_size) {
   height: $_size;
   width: $_size;
 }
+
+/* stylelint-disable value-no-vendor-prefix */
+
+// https://stackoverflow.com/a/26634773
+// disabled lint because ordering matters for browser fallback.
+
+@mixin line-clamp($numLines: 1, $lineHeight: 1.412) {
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box !important;
+  -webkit-line-clamp: $numLines;
+  max-height: $numLines * $lineHeight + unquote('em');
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+}
+
+/* stylelint-enable value-no-vendor-prefix */
 
 @mixin placeholder {
   ::-webkit-input-placeholder {
@@ -21,16 +43,21 @@
   }
 }
 
-/**
- * Responsive
- */
-@mixin mq-from-landscape($_breakpoint) {
-  @include mq($from: $_breakpoint, $and: '(orientation: landscape)') {
-    @content;
-  }
+@mixin transition($selector: all, $duration: 0.3s, $delay: 0s, $timing-function: ease-in-out) {
+  transition: $selector $duration $delay $timing-function;
 }
-@mixin mq-until-landscape($_breakpoint) {
-  @include mq($until: $_breakpoint, $and: '(orientation: landscape)') {
-    @content;
+
+@mixin neon($_color) {
+  filter: brightness(2) drop-shadow(0 0 20px color($_color));
+}
+
+@mixin outlineText($_color, $_font: 'accent', $_width: 1px) {
+  @if not ($_color) {
+    @warn 'Expected "$_color" variable to be set on mixin "outlineText" in file "_tools.mixins.scss". Received nothing.';
   }
+
+  color: transparent;
+  font-family: font($_font);
+  -webkit-text-stroke-color: color($_color);
+  -webkit-text-stroke-width: $_width;
 }

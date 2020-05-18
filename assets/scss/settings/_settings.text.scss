@@ -1,0 +1,86 @@
+/* ==========================================================================
+   #TEXT
+   ========================================================================== */
+
+$font-family-title: MaaxMono, monospace;
+$font-family-content: Maax, sans-serif;
+$input-label-size-percentage: 87.5%;
+
+$root-base-font-size: 16;
+$base-pixel-size-factor: 10;
+$root-base-font-size-percentage: ($base-pixel-size-factor / $root-base-font-size) * 100%;
+
+// ONLY access this map using the mixins in _tools.text-functions.scss.
+// There are also helper classes for u-text in _utilities.type.scss, which allow
+// the use of .u-text--${size} and .u-text--responsive to add the below styles.
+$global-text-map: (
+  'large-header': (
+    size: 32,
+    line-height: 1.25,
+    family: $font-family-title,
+    responsive: (
+      // TABLET UPWARDS:
+      tablet: (
+        size: 40,
+        line-height: 1.2,
+      ),
+      // DESKTOP UPWARDS:
+      smallDesk: (
+        size: 48,
+        line-height: 1.17,
+      )
+    )
+  ),
+  'section-header': (
+    size: 28,
+    line-height: 1.29,
+    family: $font-family-title,
+    responsive: (
+      // TABLET UPWARDS:
+      tablet: (
+        size: 32,
+        line-height: 1.25,
+      ),
+    )
+  ),
+  'sub-header': (
+    size: 24,
+    line-height: 1.33,
+    family: $font-family-title,
+  ),
+  'sub-header-alt': (
+    size: 20,
+    line-height: 1.4,
+    letter-spacing: 1.5px,
+    family: $font-family-title,
+    text-transform: uppercase,
+  ),
+  'button': (
+    size: 16,
+    line-height: 1.5,
+    letter-spacing: 1.2px,
+    family: $font-family-title,
+    text-transform: uppercase,
+  ),
+  'body-bold': (
+    size: 16,
+    line-height: 1.5,
+    weight: 700,
+    family: $font-family-content,
+  ),
+  'body': (
+    size: 16,
+    line-height: 1.5,
+    family: $font-family-content,
+  ),
+  'small-body': (
+    size: 13,
+    line-height: 1.5,
+    family: $font-family-content,
+  ),
+  'mobile-navigation': (
+    size: 10,
+    line-height: 1.6,
+    family: $font-family-content,
+  ),
+);

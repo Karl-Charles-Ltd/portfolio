@@ -1,0 +1,16 @@
+/* ==========================================================================
+   #DEV TOOLS
+   ========================================================================== */
+
+@function rem-value($px_value, $font-size-factor: 10) {
+  $_rem-value: $px_value / $font-size-factor;
+  @return #{$_rem-value}rem;
+}
+
+@function strip-unit($number) {
+  @debug $number;
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}

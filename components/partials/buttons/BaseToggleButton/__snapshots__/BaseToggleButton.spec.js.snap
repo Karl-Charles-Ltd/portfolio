@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseToggleButton is a Vue instance 1`] = `
+"<div class=\\"v-toggle-btn\\">
+  <!----> <button id=\\"test\\" role=\\"switch\\" class=\\"v-toggle-btn__pill\\"><span class=\\"v-toggle-btn__toggle\\"></span></button></div>"
+`;

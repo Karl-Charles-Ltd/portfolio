@@ -3,47 +3,56 @@ import head from './config/head';
 
 require('dotenv').config();
 
+const apiUseHttps = ((process.env.API_HTTPS && process.env.API_HTTPS) || '').toLowerCase() !== 'false';
+let debugLevel = process.env.DEBUG_LEVEL;
+
+if (!debugLevel) debugLevel = process.env.NODE_ENV === 'development' ? 'info' : 'error';
+
 // @ts-ignore
 const nuxtConfig: Configuration = {
   mode: 'universal',
   head,
+  env: {
+    debugLevel,
+    debugAxiosVerbose: process.env.DEBUG_AXIOS_VERBOSE || 'false',
+  },
   loading: { color: '' },
   css: ['assets/scss/app.scss'],
   buildModules: [
-    '@nuxt/typescript-build',
+    ['@nuxt/typescript-build', { typeCheck: process.env.NODE_ENV === 'development' }],
     ['@nuxtjs/stylelint-module', { syntax: 'scss' }],
     ['@nuxtjs/eslint-module', { configFile: './.eslintrc.js' }],
     ['@nuxtjs/dotenv', { filename: '.env' }],
   ],
   modules: [
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/auth',
+    // '@nuxtjs/auth',
     '@nuxtjs/sentry',
     '@nuxtjs/style-resources',
     '@nuxtjs/universal-storage',
   ],
   styleResources: {
-    scss: ['assets/scss/settings-tools.scss'],
+    scss: ['~/assets/scss/settings-tools.scss', '~/assets/scss/generic/generic.scss'],
   },
-  plugins: [],
+  plugins: ['~/plugins/global-components.js'],
   axios: {
-    https: process.env.API_HTTPS || false,
+    https: apiUseHttps,
   },
-  auth: {
-    redirect: {
-      home: false,
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/auth/login', method: 'post', propertyName: 'data.token.accessToken' },
-          user: { url: 'auth/user', method: 'get', propertyName: 'data.user' },
-          logout: { url: 'auth/logout', method: 'post' },
-        },
-      },
-    },
-  },
+  // auth: {
+  //   redirect: {
+  //     home: false,
+  //   },
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: '/auth/login', method: 'post', propertyName: 'data.token.accessToken' },
+  //         user: { url: 'auth/user', method: 'get', propertyName: 'data.user' },
+  //         logout: { url: 'auth/logout', method: 'post' },
+  //       },
+  //     },
+  //   },
+  // },
   sentry: {
     dsn: process.env.SENTRY_DSN,
     disabled: process.env.ENVIRONMENT === 'development',
@@ -71,6 +80,12 @@ const nuxtConfig: Configuration = {
   build: {
     loaders: {
       scss: { sourceMap: false },
+      vue: {
+        transformAssetUrls: {
+          audio: 'src',
+          source: 'src',
+        },
+      },
     },
     transpile: ['vee-validate/dist/rules'],
     babel: {
@@ -86,7 +101,6 @@ const nuxtConfig: Configuration = {
         ];
       },
     },
-    // @ts-ignore
     extend(config, ctx) {
       if (ctx.isDev) {
         // Allow nicer debugging for the SSR parts of the app by inlining the source maps
