@@ -5,7 +5,10 @@
         <!-- insert element -->
       </div>
       <div class="dl-introduction__shape">
-        <div class="dl-introduction__shape--message --message"></div>
+        <div class="dl-introduction__shape--message --message">
+          <span class="outline">Y</span>
+          <span class="outline">O.</span>
+        </div>
         <div class="dl-introduction__shape--line --line-wrapper">
           <div class="dl-introduction__shape--line __disengaged">
             <div class="line"></div>
@@ -81,18 +84,23 @@ export default class IntroductionAnimation extends Vue {
       .to(engaged, 0.5, { opacity: 1, filter: 'brightness(2)' })
       .to(disengaged, 0, { backgroundColor: '#370b3c', boxShadow: '0 0 10px #370b3c', opacity: 0.6 })
       .to(logoSmall, 1, { opacity: 1 })
+      .to(message, 0, { filter: 'brightness(1)' }, '+=0.1')
+      .to(message, 0, { opacity: 0.3 }, '+=0.1')
+      .to(message, 0, { opacity: 0.1 }, '+=0.1')
+      .to(message, 0, { opacity: 0.5 }, '+=0.1')
+      .to(message, 0, { opacity: 0.2 }, '+=0.1')
+      .to(message, 0, { opacity: 1 }, '+=0.1')
       .to(logoMedium, 1, { opacity: 1 }, '-=0.75')
       .to(logoLarge, 1, { opacity: 1 }, '-=0.5')
       .to(logoSmall, 1, { filter: 'brightness(2) drop-shadow(0 0 10px #6b2f93)' }, '-=1.5')
       .to(logo, 1, { transform: 'scale(1)', ease: 'power3.out' }, '-=1.575')
-      .to('.logo', 0.75, { opacity: 0 }, '+=0.75')
-      .to(message, 0, { opacity: 0.5 });
+      .to([logo, message], 0.75, { opacity: 0 }, '+=1.75');
 
     // Stage 2
     this.timeLine
       .to(engaged, 1, { marginBottom: '100%' })
       .to(disengaged, 0.5, { marginBottom: '100%' }, '-=0.75')
-      .to('.dl-introduction', 1.25, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
+      .to('.dl-introduction', 1, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
   }
 }
 </script>
@@ -131,8 +139,9 @@ export default class IntroductionAnimation extends Vue {
 
     &--message {
       @extend %flex--center;
+      filter: brightness(0.5) grayscale(1);
       max-width: 80%;
-      opacity: 0;
+      opacity: 0.1;
       width: 100%;
 
       > div {
@@ -144,14 +153,14 @@ export default class IntroductionAnimation extends Vue {
         @include neon('secondary');
         color: color('secondary');
         display: block;
-        font-family: font('primary');
+        font-family: font('secondary');
         font-size: 4rem;
         font-weight: bold;
         letter-spacing: 2px;
         text-transform: uppercase;
 
         &.outline {
-          @include outlineText('secondary', 'primary');
+          @include outlineText('secondary', 'secondary');
           font-size: calc(80vw / 7);
           text-align: center;
           width: 100%;

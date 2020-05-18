@@ -19,7 +19,7 @@ const availableColors: string[] = ['primary', 'secondary', 'quinary', 'black', '
 export default class Logo extends Vue {
   @Prop({ default: false }) readonly withText!: boolean;
   @Prop({ default: true }) readonly brighten!: boolean;
-  @Prop({ default: 'secondary', required: true, validator: (value) => availableColors.includes(value) })
+  @Prop({ default: 'secondary', validator: (value) => availableColors.includes(value) })
   readonly theme!: string;
 
   get styles() {

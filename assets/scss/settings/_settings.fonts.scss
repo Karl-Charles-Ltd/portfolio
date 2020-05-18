@@ -1,8 +1,10 @@
 $typeface-nanum-gothic: 'Nanum Gothic', Helvetica, sans-serif;
 $typeface-press-start: 'Press Start 2P', Helvetica, sans-serif;
+$typeface-righteous: 'Righteous', Helvetica, sans-serif;
 
 $theme-fonts: (
   'primary': $typeface-nanum-gothic,
+  'secondary': $typeface-righteous,
   'accent': $typeface-press-start,
 );
 
