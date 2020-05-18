@@ -66,7 +66,7 @@ module.exports = {
 
     'max-empty-lines': 10,
     'max-line-length': 180,
-    'max-nesting-depth': 4,
+    'max-nesting-depth': 6,
 
     'media-feature-colon-space-after': 'always',
     'media-feature-colon-space-before': 'never',

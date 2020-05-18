@@ -46,3 +46,18 @@
 @mixin transition($selector: all, $duration: 0.3s, $delay: 0s, $timing-function: ease-in-out) {
   transition: $selector $duration $delay $timing-function;
 }
+
+@mixin neon($_color) {
+  filter: brightness(2) drop-shadow(0 0 20px color($_color));
+}
+
+@mixin outlineText($_color, $_font: 'accent', $_width: 1px) {
+  @if not ($_color) {
+    @warn 'Expected "$_color" variable to be set on mixin "outlineText" in file "_tools.mixins.scss". Received nothing.';
+  }
+
+  color: transparent;
+  font-family: font($_font);
+  -webkit-text-stroke-color: color($_color);
+  -webkit-text-stroke-width: $_width;
+}

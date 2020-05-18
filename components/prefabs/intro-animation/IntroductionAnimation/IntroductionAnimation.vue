@@ -5,10 +5,7 @@
         <!-- insert element -->
       </div>
       <div class="dl-introduction__shape">
-        <div class="dl-introduction__shape--message --message">
-          <span>WELCOME</span>
-        </div>
-
+        <div class="dl-introduction__shape--message --message"></div>
         <div class="dl-introduction__shape--line --line-wrapper">
           <div class="dl-introduction__shape--line __disengaged">
             <div class="line"></div>
@@ -17,7 +14,11 @@
             <div class="line"></div>
           </div>
 
-          <Logo />
+          <div id="logo">
+            <Logo class="logo--small" />
+            <Logo class="logo--medium" theme="quinary" />
+            <Logo class="logo--large" theme="quinary" />
+          </div>
         </div>
       </div>
     </BaseLayoutItem>
@@ -60,13 +61,17 @@ export default class IntroductionAnimation extends Vue {
   mounted() {
     this.isInitialLoad = false;
 
-    // setTimeout(() => this.setAnimation(), 750);
     setTimeout(() => this.loadingAnimation(), 1000);
   }
 
   loadingAnimation() {
     const disengaged = '.__disengaged .line';
     const engaged = '.__engaged .line';
+    const message = '.--message';
+    const logo = '.logo';
+    const logoSmall = '.logo--small';
+    const logoMedium = '.logo--medium';
+    const logoLarge = '.logo--large';
 
     // Stage 1
     this.timeLine
@@ -75,38 +80,19 @@ export default class IntroductionAnimation extends Vue {
       .to(engaged, 1, { height: '100%' }, '-=0.85')
       .to(engaged, 0.5, { opacity: 1, filter: 'brightness(2)' })
       .to(disengaged, 0, { backgroundColor: '#370b3c', boxShadow: '0 0 10px #370b3c', opacity: 0.6 })
-      .to('.logo', 1, { opacity: 1 })
-      .to('.logo', 1, { filter: 'brightness(2) drop-shadow(0 0 10px #6b2f93)' }, '-=0.5')
-      .to('.logo', 1, { transform: 'scale(1)', ease: 'power3.out' }, '-=1.5')
-      .to('.logo', 0.75, { opacity: 0 }, '+=0.25');
+      .to(logoSmall, 1, { opacity: 1 })
+      .to(logoMedium, 1, { opacity: 1 }, '-=0.75')
+      .to(logoLarge, 1, { opacity: 1 }, '-=0.5')
+      .to(logoSmall, 1, { filter: 'brightness(2) drop-shadow(0 0 10px #6b2f93)' }, '-=1.5')
+      .to(logo, 1, { transform: 'scale(1)', ease: 'power3.out' }, '-=1.575')
+      .to('.logo', 0.75, { opacity: 0 }, '+=0.75')
+      .to(message, 0, { opacity: 0.5 });
 
     // Stage 2
-    // this.timeLine
-    //   .to(engaged, 1, { marginBottom: '100%' })
-    //   .to(disengaged, 0.5, { marginBottom: '100%' }, '-=0.75')
-    //   .to('.dl-introduction', 1.25, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
-  }
-
-  setAnimation() {
-    if (!window) return;
-    const staticEl: any = document.getElementById('static') || document.createElement('div');
-    const context = staticEl.getContext('2d');
-    const height = staticEl.clientHeight;
-    const width = staticEl.clientWidth;
-    const pixelWidth = 1;
-    const pixelHeight = 2;
-
-    const drawStatic = () => {
-      for (let v = 1; v < height; v += pixelHeight) {
-        for (let h = 2; h < width; h += pixelWidth) {
-          const lum = Math.floor(Math.random() * 40);
-          context.fillStyle = `hsl(0, 0%, ${lum}%)`;
-          context.fillRect(h, v, pixelWidth, pixelHeight);
-        }
-      }
-    };
-
-    requestAnimationFrame(drawStatic);
+    this.timeLine
+      .to(engaged, 1, { marginBottom: '100%' })
+      .to(disengaged, 0.5, { marginBottom: '100%' }, '-=0.75')
+      .to('.dl-introduction', 1.25, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
   }
 }
 </script>
@@ -144,13 +130,32 @@ export default class IntroductionAnimation extends Vue {
     @extend %flex--center !optional;
 
     &--message {
+      @extend %flex--center;
+      max-width: 80%;
+      opacity: 0;
+      width: 100%;
+
+      > div {
+        flex: 1;
+        text-align: center;
+      }
+
       span {
-        color: transparent;
-        font-family: font('accent');
+        @include neon('secondary');
+        color: color('secondary');
+        display: block;
+        font-family: font('primary');
         font-size: 4rem;
+        font-weight: bold;
         letter-spacing: 2px;
-        -webkit-text-stroke-color: #fff;
-        -webkit-text-stroke-width: 1px;
+        text-transform: uppercase;
+
+        &.outline {
+          @include outlineText('secondary', 'primary');
+          font-size: calc(80vw / 7);
+          text-align: center;
+          width: 100%;
+        }
       }
     }
 
@@ -163,12 +168,36 @@ export default class IntroductionAnimation extends Vue {
         width: 2px;
       }
 
-      .logo {
-        animation: noise-anim 2s infinite linear alternate-reverse;
-        clip: rect(0, 900px, 0, 0);
-        filter: brightness(1) drop-shadow(0 0 10px color('secondary'));
-        opacity: 0;
-        transform: scale(1.25);
+      #logo {
+        @extend %flex--center;
+        height: 200px;
+        width: 200px;
+
+        .logo {
+          clip: rect(0, 900px, 0, 0);
+          filter: brightness(1) drop-shadow(0 0 10px color('secondary'));
+          opacity: 0;
+          position: absolute;
+          transform: scale(1.25);
+
+          &--small {
+            position: relative;
+          }
+
+          &--medium {
+            animation: noise-anim-alt 2s infinite linear alternate-reverse;
+            filter: brightness(0.75);
+            height: 125px;
+            width: 125px;
+          }
+
+          &--large {
+            animation: noise-anim 2s infinite linear alternate-reverse;
+            filter: brightness(0.75);
+            height: 150px;
+            width: 150px;
+          }
+        }
       }
 
       &.__disengaged {

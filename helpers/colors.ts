@@ -8,11 +8,11 @@
  */
 export function colorFromTheme(colorName) {
   const colors = {
-    primary: '#6b2f93',
-    secondary: '#D0438F',
-    tertiary: '#09ECFD',
+    primary: '#370b3c',
+    secondary: '#6b2f93',
+    tertiary: '#D0438F',
     quaternary: '#f40ee3',
-    quinary: '#370b3c',
+    quinary: '#09ECFD',
     black: '#000000',
     charcoal: '#4D4D4D',
     'grey-one': '#949494',
