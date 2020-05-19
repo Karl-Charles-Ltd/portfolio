@@ -1,7 +1,13 @@
 <template>
   <div id="application">
+    <!-- Symmetric Grid -->
+    <SymmetricGrid />
+
     <!-- Introduction Animation -->
     <IntroductionAnimation />
+
+    <!-- Audio Wrapper -->
+    <AudioWrapper />
 
     <header>
       <TheNavBar />
@@ -14,17 +20,19 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator';
-import RollyMixin from './Rolly/RollyMixin.vue';
-import TheNavBar from '~/components/prefabs/navigation/TheNavBar/TheNavBar.vue';
-import IntroductionAnimation from '~/components/prefabs/intro-animation/IntroductionAnimation/IntroductionAnimation.vue';
+import RollyMixin from './rolly/RollyMixin.vue';
+import SymmetricGrid from '~/layouts/SymmetricGrid/SymmetricGrid.vue';
 
-// const TheNavBar = () => import('~/components/prefabs/navigation/TheNavBar/TheNavBar.vue');
-// const IntroductionAnimation = () =>
-//   import('~/components/prefabs/intro-animation/IntroductionAnimation/IntroductionAnimation.vue');
+const TheNavBar = () => import('~/components/prefabs/navigation/TheNavBar/TheNavBar.vue');
+const IntroductionAnimation = () =>
+  import('~/components/prefabs/intro-animation/IntroductionAnimation/IntroductionAnimation.vue');
+const AudioWrapper = () => import('~/layouts/audio/AudioWrapper/AudioWrapper.vue');
 
 @Component({
   components: {
     TheNavBar,
+    AudioWrapper,
+    SymmetricGrid,
     IntroductionAnimation,
   },
 })

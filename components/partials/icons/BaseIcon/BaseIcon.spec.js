@@ -7,7 +7,7 @@ const shallowMountComponent = (options) => componentFactory(BaseIcon, { localVue
 
 describe('BaseIcon', () => {
   test('is a Vue instance', () => {
-    createSnapshot(BaseIcon, { propsData: { icon: 'Bin' } });
+    createSnapshot(BaseIcon, { propsData: { icon: 'Play' } });
   });
 
   describe('computed', () => {

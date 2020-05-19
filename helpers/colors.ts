@@ -13,6 +13,8 @@ export function colorFromTheme(colorName) {
     tertiary: '#D0438F',
     quaternary: '#f40ee3',
     quinary: '#09ECFD',
+    'quinary-light': '#1A5C7E',
+    'quinary-dark': '#010226',
     black: '#000000',
     charcoal: '#4D4D4D',
     'grey-one': '#949494',

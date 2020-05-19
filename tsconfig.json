@@ -27,6 +27,7 @@
       "@nuxtjs/axios",
       "./index.d.ts",
       "./vue-shim.d.ts",
+      "./mp3-shim.d.ts",
       "./mp4-shim.d.ts"
     ]
   },
