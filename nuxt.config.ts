@@ -25,7 +25,7 @@ const nuxtConfig: Configuration = {
     ['@nuxtjs/dotenv', { filename: '.env' }],
   ],
   modules: [
-    // '@nuxtjs/axios',
+    '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // '@nuxtjs/auth',
     '@nuxtjs/sentry',
@@ -106,6 +106,15 @@ const nuxtConfig: Configuration = {
         // Allow nicer debugging for the SSR parts of the app by inlining the source maps
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map';
       }
+
+      // @ts-ignore
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      });
     },
   },
 };

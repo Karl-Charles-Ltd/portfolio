@@ -16,6 +16,7 @@ export function colorFromTheme(colorName) {
     'quinary-light': '#1A5C7E',
     'quinary-dark': '#010226',
     black: '#000000',
+    background: '#202227',
     charcoal: '#4D4D4D',
     'grey-one': '#949494',
     'grey-two': '#CDCDCD',

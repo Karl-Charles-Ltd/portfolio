@@ -1,17 +1,12 @@
 <template>
   <div id="application">
-    <!-- Symmetric Grid -->
-    <SymmetricGrid />
-
     <!-- Introduction Animation -->
     <IntroductionAnimation />
 
     <!-- Audio Wrapper -->
     <AudioWrapper />
 
-    <header>
-      <TheNavBar />
-    </header>
+    <TheNavBar />
     <main id="main" role="main">
       <nuxt />
     </main>

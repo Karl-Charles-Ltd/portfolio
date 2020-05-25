@@ -88,6 +88,7 @@ export default class SymmetricGrid extends Vue {
   @extend %absolute;
   opacity: 0.6;
   overflow: hidden;
+  z-index: z-index(deepBackground);
 
   .rows {
     .row {

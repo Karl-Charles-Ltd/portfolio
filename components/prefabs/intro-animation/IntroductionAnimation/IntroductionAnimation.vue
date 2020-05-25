@@ -1,13 +1,13 @@
 <template>
-  <BaseLayout class="dl-introduction">
+  <BaseLayout :class="['dl-introduction', { completed: isComplete }]">
     <BaseLayoutItem r="1/1">
       <div class="dl-introduction__underlay">
         <!-- insert element -->
       </div>
       <div class="dl-introduction__shape">
         <div class="dl-introduction__shape--message --message">
-          <span class="outline">Y</span>
-          <span class="outline">O.</span>
+          <span :class="['outline', { animate: glitch }]" data-text="Y">Y</span>
+          <span :class="['outline', { animate: glitch }]" data-text="O.">O.</span>
         </div>
         <div class="dl-introduction__shape--line --line-wrapper">
           <div class="dl-introduction__shape--line __disengaged">
@@ -45,14 +45,19 @@ export default class IntroductionAnimation extends Vue {
   private isLoading: Boolean;
   private isInitialLoad: Boolean;
   private timeLine: any;
+  private glitch: boolean;
+  private isComplete: boolean;
+  private completeCount: number;
 
   constructor(props) {
     super(props);
     this.isLoading = false;
     this.isInitialLoad = true;
+    this.glitch = false;
+    this.isComplete = false;
+    this.completeCount = 0;
     this.timeLine = new TimelineLite({
-      // eslint-disable-next-line
-      onComplete: () => console.log('test'),
+      onComplete: () => this.completed(),
       force3d: true,
     });
   }
@@ -61,46 +66,65 @@ export default class IntroductionAnimation extends Vue {
     return process.env.ENVIRONMENT;
   }
 
+  private completed(): void {
+    if (this.completeCount === 2) this.isComplete = true;
+    else this.completeCount++;
+  }
+
   mounted() {
     this.isInitialLoad = false;
 
-    setTimeout(() => this.loadingAnimation(), 1000);
+    setTimeout(() => this.loadingAnimation(), 500);
   }
 
   loadingAnimation() {
     const disengaged = '.__disengaged .line';
     const engaged = '.__engaged .line';
     const message = '.--message';
-    const logo = '.logo';
+    const logo = '.logo:not(.main)';
     const logoSmall = '.logo--small';
     const logoMedium = '.logo--medium';
     const logoLarge = '.logo--large';
 
     // Stage 1
-    this.timeLine
-      .to(engaged, 1, { height: '33%' })
-      .to(engaged, 1, { height: '66%' }, '+=0.25')
-      .to(engaged, 1, { height: '100%' }, '-=0.85')
-      .to(engaged, 0.5, { opacity: 1, filter: 'brightness(2)' })
-      .to(disengaged, 0, { backgroundColor: '#370b3c', boxShadow: '0 0 10px #370b3c', opacity: 0.6 })
-      .to(logoSmall, 1, { opacity: 1 })
-      .to(message, 0, { filter: 'brightness(1)' }, '+=0.1')
-      .to(message, 0, { opacity: 0.3 }, '+=0.1')
-      .to(message, 0, { opacity: 0.1 }, '+=0.1')
-      .to(message, 0, { opacity: 0.5 }, '+=0.1')
-      .to(message, 0, { opacity: 0.2 }, '+=0.1')
-      .to(message, 0, { opacity: 1 }, '+=0.1')
-      .to(logoMedium, 1, { opacity: 1 }, '-=0.75')
-      .to(logoLarge, 1, { opacity: 1 }, '-=0.5')
-      .to(logoSmall, 1, { filter: 'brightness(2) drop-shadow(0 0 10px #6b2f93)' }, '-=1.5')
-      .to(logo, 1, { transform: 'scale(1)', ease: 'power3.out' }, '-=1.575')
-      .to([logo, message], 0.75, { opacity: 0 }, '+=1.75');
-
-    // Stage 2
-    this.timeLine
-      .to(engaged, 1, { marginBottom: '100%' })
-      .to(disengaged, 0.5, { marginBottom: '100%' }, '-=0.75')
-      .to('.dl-introduction', 1, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
+    new Promise((resolve) => {
+      this.timeLine
+        .to(engaged, 1, { height: '33%' })
+        .to(engaged, 1, { height: '66%' }, '+=0.25')
+        .to(engaged, 1, { height: '100%' }, '-=0.85')
+        .to(engaged, 0.5, { opacity: 1, filter: 'brightness(2)' })
+        .to(disengaged, 0, { backgroundColor: '#370b3c', boxShadow: '0 0 10px #370b3c', opacity: 0.6 })
+        .to(logoSmall, 1, { opacity: 1 })
+        .to(message, 0, { filter: 'brightness(1)' }, '+=0.1')
+        .to(message, 0, { opacity: 0.3 }, '+=0.1')
+        .to(message, 0, { opacity: 0.1 }, '+=0.1')
+        .to(message, 0, { opacity: 0.5 }, '+=0.1')
+        .to(message, 0, { opacity: 0.2 }, '+=0.1')
+        .to(message, 0, { opacity: 1 }, '+=0.1')
+        .to(logoMedium, 1, { opacity: 1 }, '-=0.75')
+        .to(logoLarge, 1, { opacity: 1 }, '-=0.5')
+        .to(logoSmall, 1, { filter: 'brightness(2) drop-shadow(0 0 10px #6b2f93)' }, '-=1.5');
+      resolve();
+    })
+      .then(() => {
+        this.glitch = true;
+      })
+      .then(() => {
+        this.timeLine
+          .to(logo, 1, { transform: 'scale(1)', ease: 'power3.out' }, '-=1.575')
+          .to([logo, message], 0.75, { opacity: 0 }, '+=1.75');
+      })
+      .then(() => {
+        this.timeLine
+          .to(engaged, 1, { marginBottom: '100%' })
+          .to(disengaged, 0.5, { marginBottom: '100%' }, '-=0.75')
+          .to('.dl-introduction', 1, { bottom: '100%', ease: 'power3.out' }, '-=0.5');
+      })
+      .catch((error) => {
+        throw new Error(error);
+        // @todo create Sentry error
+      })
+      .finally(() => this.completed());
   }
 }
 </script>
@@ -110,6 +134,12 @@ export default class IntroductionAnimation extends Vue {
   @extend %flex;
   @extend %fixed;
   background-color: color('black');
+  z-index: z-index('aboveAll');
+
+  &.completed {
+    pointer-events: none;
+    z-index: z-index('deepBackground');
+  }
 
   &__underlay {
     @extend %flex;
@@ -150,7 +180,7 @@ export default class IntroductionAnimation extends Vue {
       }
 
       span {
-        @include neon('secondary');
+        @include neonText('secondary');
         color: color('secondary');
         display: block;
         font-family: font('secondary');
@@ -164,6 +194,40 @@ export default class IntroductionAnimation extends Vue {
           font-size: calc(80vw / 7);
           text-align: center;
           width: 100%;
+        }
+
+        &.animate {
+          &:before {
+            animation: noise-anim-alt 3s infinite linear alternate-reverse;
+            background: transparent;
+            clip: rect(0, 900px, 0, 0);
+            color: transparent;
+            content: attr(data-text);
+            left: 0;
+            opacity: 0.25;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            text-shadow: 1px 0 color('quinary');
+            top: 0;
+            transform: translate(-4px, 4px);
+          }
+
+          &:after {
+            animation: noise-anim 2s infinite linear alternate-reverse;
+            background: transparent;
+            clip: rect(0, 900px, 0, 0);
+            color: transparent;
+            content: attr(data-text);
+            left: 0;
+            opacity: 0.25;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            text-shadow: -1px 0 color('tertiary');
+            top: 0;
+            transform: translate(4px, -4px);
+          }
         }
       }
     }

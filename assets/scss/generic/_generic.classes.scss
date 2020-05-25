@@ -74,3 +74,19 @@
 %transition {
   @include transition();
 }
+
+%glitch-after {
+  animation: noise-anim 2s infinite linear alternate-reverse;
+  background: transparent;
+  clip: rect(0, 900px, 0, 0);
+  color: transparent;
+  content: attr(data-text);
+  left: 0;
+  opacity: 0.25;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  text-shadow: -1px 0 color('tertiary');
+  top: 0;
+  transform: translate(4px, -4px);
+}

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Vue, Component, namespace } from 'nuxt-property-decorator';
+import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator';
 
 const AudioStore = namespace('audio');
 
@@ -17,5 +17,28 @@ export default class Audio extends Vue {
   @AudioStore.Getter('isPaused') isPaused;
   @AudioStore.Getter('isMuted') isMuted;
   @AudioStore.Getter('isLooping') isLooping;
+
+  public track;
+
+  constructor() {
+    super();
+    this.track = this.selectedTrack;
+  }
+
+  @Watch('selectedTrack')
+  onSelectedTrack() {
+    // eslint-disable-next-line
+    console.log(this.selectedTrack);
+
+    this.track = Object.assign({}, this.selectedTrack.track);
+  }
+
+  public onEnded() {
+    this.setSelectedTrack();
+  }
+
+  created() {
+    this.loadTracks();
+  }
 }
 </script>

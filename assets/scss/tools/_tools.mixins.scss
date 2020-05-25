@@ -1,3 +1,14 @@
+%glitch {
+  background: transparent;
+  clip: rect(0, 900px, 0, 0);
+  color: transparent;
+  content: attr(data-text);
+  left: 0;
+  opacity: 0.25;
+  overflow: hidden;
+  position: absolute;
+}
+
 //@mixin backgroundImage($url) {
 //    background-image: url(append-cache-query($url)); // stylelint-disable-line function-url-quotes
 //}
@@ -48,6 +59,20 @@
 }
 
 @mixin neon($_color) {
+  border: 1px solid rgba(color($_color), 0.5);
+  border-radius: 15px;
+  background-color: rgba(color('white'), 0.03);
+  box-shadow: 0 0 20px color($_color);
+  filter: brightness(2) drop-shadow(0 0 20px color($_color));
+  transition: all .25s ease-in-out;
+
+  &:hover {
+    background-color: rgba(color('white'), 0.01);
+    border-color: color($_color);
+  }
+}
+
+@mixin neonText($_color) {
   filter: brightness(2) drop-shadow(0 0 20px color($_color));
 }
 
@@ -60,4 +85,22 @@
   font-family: font($_font);
   -webkit-text-stroke-color: color($_color);
   -webkit-text-stroke-width: $_width;
+}
+
+@mixin glitchBefore($_color) {
+  @extend %glitch;
+  animation: noise-anim-alt 3s infinite linear alternate-reverse;
+  right: 0;
+  text-shadow: 1px 0 color('quinary');
+  top: 0;
+  transform: translate(-4px, 4px);
+}
+
+@mixin glitchAfter($_color) {
+  @extend %glitch;
+  animation: noise-anim 3s infinite linear alternate-reverse;
+  right: 0;
+  text-shadow: 1px 0 color('quinary');
+  top: 0;
+  transform: translate(-4px, 4px);
 }

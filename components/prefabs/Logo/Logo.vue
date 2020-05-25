@@ -13,7 +13,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { colorFromTheme } from '~/helpers/colors';
 
-const availableColors: string[] = ['primary', 'secondary', 'quinary', 'black', 'white'];
+const availableColors: string[] = ['primary', 'secondary', 'quinary', 'quinary-light', 'black', 'white'];
 
 @Component
 export default class Logo extends Vue {

@@ -2,7 +2,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  background-color: darken(color('quinary-dark'), 3);
+  background-color: color('background');
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
 
+li {
+  list-style: none;
+  font-family: font('primary');
+}

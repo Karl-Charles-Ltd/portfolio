@@ -10,13 +10,13 @@ interface PlaybackOptions {
   loop: boolean;
 }
 
-interface Audio {
-  selectedTrack: HTMLAudioElement | null;
-  playlist: Array<HTMLAudioElement>;
+interface AudioStore {
+  selectedTrack: Object | null;
+  playlist: Array<string>;
   playbackOptions: PlaybackOptions;
 }
 
-export const state = (): Audio => ({
+export const state = (): AudioStore => ({
   selectedTrack: null,
   playlist: [],
   playbackOptions: {
@@ -27,38 +27,43 @@ export const state = (): Audio => ({
 });
 
 export const getters = {
-  getNextUpTrack: (state: Audio): HTMLAudioElement => {
+  getNextUpTrack: (state): HTMLAudioElement => {
     return state.playlist[0];
   },
-  isPaused: (state: Audio): boolean => {
+  isPaused: (state): boolean => {
     return state.playbackOptions.paused;
   },
-  isMuted: (state: Audio): boolean => {
+  isMuted: (state): boolean => {
     return state.playbackOptions.muted;
   },
-  isLooping: (state: Audio): boolean => {
+  isLooping: (state): boolean => {
     return state.playbackOptions.loop;
   },
 };
 
 export const actions = {
-  loadTracks: async ({ commit, dispatch }, self) => {
+  loadTracks: async ({ commit, dispatch }) => {
     try {
-      const trax = await self.$axios.$get('/audio/*.mp3');
+      const trax = await require('~/static/audio/');
+      let list = []; // eslint-disable-line
 
-      await commit(types.SET_PLAYLIST, trax);
+      // @ts-ignore
+      await Object.keys(trax).forEach((track) => list.push(trax[track].default));
+
+      await commit(types.SET_PLAYLIST, list);
       await dispatch('setSelectedTrack');
     } catch (error) {
       throw new Error(error);
     }
   },
   setSelectedTrack: ({ commit, rootState }) => {
-    const currentState = rootState;
-    const nextTrack = currentState.playlist.shift();
-    const newPlaylist = currentState.push(nextTrack);
+    const currentPlaylist = rootState.audio.playlist.map((track) => track);
+    const nextTrack = currentPlaylist.shift();
+
+    currentPlaylist.push(nextTrack);
 
     commit(types.SET_CURRENT_TRACK, nextTrack);
-    commit(types.SET_PLAYLIST, newPlaylist);
+    commit(types.SET_PLAYLIST, currentPlaylist);
   },
   /**
    * This method is flexible and can handle any update
@@ -74,13 +79,13 @@ export const actions = {
 };
 
 export const mutations = {
-  [types.SET_CURRENT_TRACK](state: Audio, track: HTMLAudioElement) {
-    state.selectedTrack = track;
+  [types.SET_CURRENT_TRACK](state: AudioStore, track: string) {
+    state.selectedTrack = { track };
   },
-  [types.SET_PLAYLIST](state: Audio, tracks: Array<HTMLAudioElement>) {
+  [types.SET_PLAYLIST](state: AudioStore, tracks: Array<string>) {
     state.playlist = tracks;
   },
-  [types.SET_PLAYBACK_OPTIONS](state: Audio, playbackOption: PlaybackOptions) {
+  [types.SET_PLAYBACK_OPTIONS](state: AudioStore, playbackOption: PlaybackOptions) {
     Object.keys(playbackOption).forEach((key) => {
       state.playbackOptions[key] = playbackOption[key];
     });
